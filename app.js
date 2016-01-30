@@ -7,6 +7,8 @@ var indexController = require('./routes/IndexController');
 var todosController = require('./routes/TodosController');
 //Controlador de les funcion de ENREGISTRA un usuari... [Index, registeRUser]
 var registerController = require('./routes/RegisterController');
+//Controlador de les funcion de ENREGISTRA un usuari... [Index, registeRUser]
+var categoriaController = require('./routes/CategoriaController');
 
 var http = require('http');
 var path = require('path');
@@ -83,10 +85,17 @@ app.post('/register', registerController.registerUser);
 
 app.all('/api/*', security.ensureAuthenticated);
 app.all('/todos', security.ensureAuthenticated);
+app.all('/categories', security.ensureAuthenticated)
 
 app.get('/todos', indexController.index);
+app.get('/categories', indexController.index_categoria)
+
 app.get('/api/todos', todosController.allTodos);
 app.post('/api/todos', todosController.createTodo);
+
+app.get('/api/todosCat', categoriaController.totesAllCategoria);
+app.post('/api/todosCat', categoriaController.createCategories);
+
 app.delete('/api/todos/:todo_id', todosController.deleteTodo);
 
 //Arranca el servidor en el port INDICAT

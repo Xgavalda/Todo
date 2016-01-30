@@ -1,0 +1,50 @@
+<% include ./partials/head %>
+<body ng-controller="mainController" ng-init="initialize()">
+  <!-- Inclueix una barra de navegacio -->
+  <% include navbar/navbar %>
+
+  <!-- Bootstrap es el CONTAINER -->
+  <div class="container">
+
+
+  <!-- CAPÇALERA -->
+    <div class="jumbotron text-center">
+      <h1>Categories   <span class="label label-info">{{ totesAllCategoria.length }}</span></h1>
+    </div>
+
+  <!-- TODO LIST -->
+    <div id="todo-list" class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+
+        <!-- LOOP OVER THE TODOS IN $scope.todos -->
+        <div class="checkbox" ng-repeat="todocategoria in totesAllCategoria">
+          <label>
+            <!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"><span>{{ todo.date | timeago }}<span> <b>{{ todo.text }}</b> -->
+            <input type="checkbox"><span>{{ todocategoria.date | timeago }}<span> <b>{{ todocategoria.text }}</b>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+  <!-- FORM TO CREATE TODOS -->
+    <div id="todo-form" class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+        <form>
+          <div class="form-group">
+
+            <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+            <input type="text" class="form-control input-lg text-center" placeholder="Introdueix categories" ng-model="formData.text">
+          </div>
+
+          <!-- Crida a la funcio createToDo() de TODOSCONTROLLERS -->
+          <button type="submit" class="btn btn-primary btn-lg" ng-click="createCategories()">Add</button>
+          <a class="btn btn-primary btn-lg" href="./todos">Tasques</a>  
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+</html>
